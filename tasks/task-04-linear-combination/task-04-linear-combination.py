@@ -26,7 +26,7 @@ def linear_combination(i1: np.ndarray, i2: np.ndarray, a1: float, a2: float) -> 
     cv2.waitKey()
     ### END CODE HERE ###
 
-    return i_out
+    return None
 
 # Example Usage
 if __name__ == "__main__":
