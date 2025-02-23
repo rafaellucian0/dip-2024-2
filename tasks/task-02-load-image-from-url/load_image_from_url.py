@@ -17,17 +17,17 @@ def load_image_from_url(url, **kwargs):
     ### START CODE HERE ###
     capture = cv.VideoCapture(url)
 
-    img = capture.read()[1]
+    image = capture.read()[1]
 
     if "flags" in kwargs:
-        img = cv.cvtColor(img, kwargs["flags"])
+        image = cv.cvtColor(image, kwargs["flags"])
 
-    cv.imshow("Image", img)
+    cv.imshow("Image", image)
     cv.waitKey()
 
     ### END CODE HERE ###
     
-    return img
+    return image
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--url", type=str, required=True)
