@@ -1,4 +1,5 @@
 import argparse
+import requests
 import numpy as np
 import cv2 as cv
 
@@ -15,12 +16,11 @@ def load_image_from_url(url, **kwargs):
     """
     
     ### START CODE HERE ###
-    capture = cv.VideoCapture(url)
+    response = requests.get(url)
 
-    image = capture.read()[1]
+    arr = np.frombuffer(response.content, np.uint8)
 
-    if "flags" in kwargs:
-        image = cv.cvtColor(image, kwargs["flags"])
+    image = cv.imdecode(arr, **kwargs)
 
     cv.imshow("Image", image)
     cv.waitKey()
@@ -28,15 +28,5 @@ def load_image_from_url(url, **kwargs):
     ### END CODE HERE ###
     
     return image
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--url", type=str, required=True)
-parser.add_argument("--flags", type=int, default=None)
-args = parser.parse_args()
-
-if args.flags is not None:
-    kwargs = {"flags": args.flags}
-else:
-    kwargs = {}
     
-load_image_from_url(args.url, **kwargs)
+load_image_from_url(url, flags=cv.IMREAD_GRAYSCALE)
