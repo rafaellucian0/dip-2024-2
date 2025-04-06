@@ -26,7 +26,7 @@ Notes:
 
 import cv2 as cv
 import numpy as np
-import skimage as ski
+import scikitimage as ski
 
 def match_histograms_rgb(source_img: np.ndarray, reference_img: np.ndarray): 
     source_img = cv.cvtColor(source_img, cv.COLOR_BGR2RGB)
